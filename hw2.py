@@ -16,8 +16,8 @@ def toexcel(e, startrow, startcol):
             value.append(str(e[i]).replace("[","").replace("]",""))
             size.append(len(e[i]))
 
-        # df = DataFrame({'bin':label, 'value':value, 'frequency': size})
-        # df.to_excel(writer, sheet_name='sheet2', index=False, header=True, startrow=startrow, startcol=startcol)   
+        df = DataFrame({'bin':label, 'value':value, 'frequency': size})
+        df.to_excel(writer, sheet_name='sheet2', index=False, header=True, startrow=startrow, startcol=startcol)   
 
 
 def ReadData():
@@ -71,7 +71,10 @@ def ReadData():
             bb[i] = []
         bb[i].append(ed[i][0])
         for j in range(1, len(ed[i]) - 1):
-            bb[i].append(ed[i][0])
+            if(abs(ed[i][0] - ed[i][j]) <= abs(ed[i][j] - ed[i][len(ed[i])-1])):
+                bb[i].append(ed[i][0])
+            else:
+                bb[i].append(ed[i][len(ed[i])-1])
         bb[i].append(ed[i][len(ed[i])-1])
  
     toexcel(ew,0,0)
