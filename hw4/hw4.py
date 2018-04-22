@@ -69,10 +69,10 @@ def neural_network(datas, output, local_var_num_attb, local_var_num_hidden,local
         weight1 += l1.T.dot(l2_delta)
         weight0 += l0.T.dot(l1_delta)
     
-    print(weight0)
-    print(weight1)
-    print(weight2)
-    print(weight3)
+    # print(weight0)
+    # print(weight1)
+    # print(weight2)
+    # print(weight3)
    
     l0 = data_test
     l1 = nonlin(np.dot(l0,weight0))
@@ -81,11 +81,15 @@ def neural_network(datas, output, local_var_num_attb, local_var_num_hidden,local
     l4 = nonlin(np.dot(l3,weight3))
     l4 = np.around(l4, decimals=2)
     l4_error = output_test - l4
+    print(l4_error)
     error = ((100 * l4_error) / l4)
     meam_error = 0.0
     for e in error:
         meam_error += abs(e[0])
     print(meam_error/len(l4))
+    
+    print(l4*10)
+    print(output_test*10)
 
 if __name__ == "__main__":
     #preprocess
